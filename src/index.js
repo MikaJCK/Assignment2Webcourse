@@ -16,6 +16,7 @@ const SizeofBoard = 5;
 const otherplayersTurn = 10;
 var proxytime = otherplayersTurn;
 var canStop = false;
+var intervalStopvalue;
 
 function addItemToArray(id, symbol) {
   if (symbol === "O") {
@@ -62,6 +63,7 @@ function createTimer() {
   let progressbar = document.createElement("div");
   progressbarShell.className = "w3-border";
   progressbarShell.style.width = "40%";
+  progressbarShell.setAttribute("id", "progresshell");
   progressbar.className = "w3-gray";
   progressbar.style.height = "24px";
   progressbar.style.width = 0;
@@ -73,24 +75,22 @@ function createTimer() {
 function changeTimer() {
   document.getElementById("timer").innerHTML = proxytime;
   const procentage = ((100 * proxytime) / otherplayersTurn).toString() + "%";
-  console.log(procentage);
+  //console.log(procentage);
   document.getElementById("progressbar").style.width = procentage;
 }
 
 function timerStart() {
   createTimer();
   //var time = new Date().getTime();
+  proxytime = otherplayersTurn;
   changeTimer(proxytime);
-
-  var i = setInterval(function() {
+  canStop = false;
+  intervalStopvalue = setInterval(function() {
     changeTimer(proxytime);
     proxytime -= 1;
 
     if (proxytime === -1) {
       changeplayer();
-    }
-    if (canStop) {
-      clearInterval(i);
     }
   }, 1000);
 }
@@ -107,6 +107,7 @@ function initializeCode() {
   renderTablet();
   ChangePlayerButton();
   makeArray();
+
   timerStart();
 }
 
@@ -119,12 +120,17 @@ function makeArray() {
 }
 
 function clearBoard() {
+  clearInterval(intervalStopvalue);
   var button = document.getElementById("clearButton");
   var button2 = document.getElementById("CP");
+
   initializeCode();
   document.getElementById("board").remove();
   button2.remove();
   button.remove();
+  document.getElementById("progressbar").remove();
+  document.getElementById("progresshell").remove();
+  document.getElementById("timer").remove();
 }
 
 function renderTablet() {
