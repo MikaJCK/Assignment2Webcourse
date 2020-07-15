@@ -20,9 +20,9 @@ var intervalStopvalue;
 
 function addItemToArray(id, symbol) {
   if (symbol === "O") {
-    //document.getElementById(id).style.backgroundColor = "rgb(250, 128, 114)";
+    document.getElementById(id).style.backgroundColor = "rgb(250, 128, 114)";
   } else if (symbol === "X") {
-    //document.getElementById(id).style.backgroundColor = "rgb(124, 252, 0)";
+    document.getElementById(id).style.backgroundColor = "rgb(124, 252, 0)";
   }
   var splits = id.split("-");
   array[splits[0] - 1][splits[1] - 1] = symbol;
