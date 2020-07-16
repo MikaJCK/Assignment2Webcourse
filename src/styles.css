@@ -1,8 +1,7 @@
 body {
   font-family: sans-serif;
 }
-table,
-td {
+table {
   border: 1px solid black;
   border-collapse: collapse;
 }
@@ -11,10 +10,9 @@ table {
   font-size: 30px;
 }
 td {
-  width: 59px;
-  height: 59px;
+  width: 60px;
+  height: 60px;
   cursor: pointer;
-  font: Helvetica;
   font-size: 30px;
   box-shadow: 3px 3px 1px #888888;
 
