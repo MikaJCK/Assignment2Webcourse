@@ -16,6 +16,7 @@ const SizeofBoard = 5;
 const otherplayersTurn = 10;
 var proxytime = otherplayersTurn;
 var canStop = false;
+var Winner = false;
 var intervalStopvalue;
 
 function addItemToArray(id, symbol) {
@@ -31,7 +32,7 @@ function addItemToArray(id, symbol) {
 function addListener(element) {
   const button = element;
   console.log("button done");
-  button.addEventListener("mousedown", event => {
+  button.addEventListener("mousedown", (event) => {
     buttonActivites(element.id);
     event.stopPropagation();
   });
@@ -85,7 +86,7 @@ function timerStart() {
   proxytime = otherplayersTurn;
   changeTimer(proxytime);
   canStop = false;
-  intervalStopvalue = setInterval(function() {
+  intervalStopvalue = setInterval(function () {
     changeTimer(proxytime);
     proxytime -= 1;
 
@@ -98,7 +99,7 @@ function timerStart() {
 if (document.readyState !== "loading") {
   initializeCode();
 } else {
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function () {
     initializeCode();
   });
 }
@@ -162,7 +163,7 @@ function clearButton() {
   let button = document.createElement("button");
   button.textContent = "clear board";
   button.setAttribute("id", "clearButton");
-  button.addEventListener("mousedown", event => {
+  button.addEventListener("mousedown", (event) => {
     clearBoard();
     event.stopPropagation();
   });
@@ -183,7 +184,7 @@ function ChangePlayerButton() {
   let button = document.createElement("button");
   button.textContent = "changeplayer";
   button.setAttribute("id", "CP");
-  button.addEventListener("mousedown", event => {
+  button.addEventListener("mousedown", (event) => {
     changeplayer();
     event.stopPropagation();
   });
@@ -245,6 +246,7 @@ function checkWinner(array2d) {
     }
     if (int === SizeofBoard) {
       alert("Player 1 won!");
+
       return 1;
     } else if (int === -SizeofBoard) {
       alert("Player 2 won!");

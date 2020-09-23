@@ -4,14 +4,14 @@ body {
 table {
   border: 1px solid black;
   border-collapse: collapse;
-}
-table {
   border-spacing: 15px;
   font-size: 30px;
 }
+
+table,
 td {
-  width: 59px;
-  height: 59px;
+  width: 100px;
+  height: 100px;
   cursor: pointer;
   font-size: 30px;
   box-shadow: 3px 3px 1px #888888;
